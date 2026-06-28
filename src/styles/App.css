@@ -1,0 +1,39 @@
+.app {
+  position: relative;
+  overflow-x: clip;
+}
+
+main {
+  position: relative;
+}
+
+/* Ambient radial glows used behind sections for depth without color */
+.app::before,
+.app::after {
+  content: '';
+  position: absolute;
+  width: 640px;
+  height: 640px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app::before {
+  top: -120px;
+  left: -200px;
+}
+
+.app::after {
+  top: 1400px;
+  right: -260px;
+}
+
+@media (max-width: 768px) {
+  .app::before,
+  .app::after {
+    width: 380px;
+    height: 380px;
+  }
+}

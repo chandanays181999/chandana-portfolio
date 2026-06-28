@@ -1,0 +1,294 @@
+/* ── Projects Carousel ── */
+
+.projects__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.projects__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.projects__counter {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--gray-500);
+  min-width: 60px;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.projects__arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-300);
+  transition: all 0.3s var(--ease);
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.projects__arrow svg { width: 20px; height: 20px; }
+
+.projects__arrow:hover {
+  border-color: var(--white);
+  color: var(--white);
+  background: rgba(255,255,255,0.07);
+  transform: scale(1.06);
+}
+
+/* Viewport */
+.projects__viewport {
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0 28px;
+  user-select: none;
+}
+
+.projects__track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 420px;
+  transition: transform 0.1s linear;
+}
+
+/* Each slide positioned around center */
+.projects__slide {
+  position: absolute;
+  width: 640px;
+  max-width: 90vw;
+  transition: transform 0.6s var(--ease), opacity 0.6s var(--ease), scale 0.6s var(--ease);
+}
+
+.projects__slide[data-pos="0"]  { transform: translateX(0) scale(1);        opacity: 1;    z-index: 3; }
+.projects__slide[data-pos="1"]  { transform: translateX(72%) scale(0.82);   opacity: 0.25; z-index: 2; }
+.projects__slide[data-pos="-1"] { transform: translateX(-72%) scale(0.82);  opacity: 0.25; z-index: 2; }
+.projects__slide[data-pos="2"],
+.projects__slide[data-pos="3"],
+.projects__slide[data-pos="4"],
+.projects__slide[data-pos="5"]  { transform: translateX(115%) scale(0.65);  opacity: 0;    z-index: 1; }
+.projects__slide[data-pos="-2"],
+.projects__slide[data-pos="-3"],
+.projects__slide[data-pos="-4"],
+.projects__slide[data-pos="-5"] { transform: translateX(-115%) scale(0.65); opacity: 0;    z-index: 1; }
+
+/* ── Card ── */
+.project-card {
+  width: 100%;
+  border-radius: var(--radius-md);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 360px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+}
+
+.project-card.is-active {
+  background: #000000;
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 32px 80px -20px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.12);
+}
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* number — mono, muted */
+.project-card__number {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-700);
+  letter-spacing: 0.15em;
+}
+
+/* category pill — same as skills tabs */
+.project-card__category {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gray-500);
+  border: 1px solid var(--border-soft);
+  border-radius: 100px;
+  padding: 4px 13px;
+  text-transform: uppercase;
+}
+
+.project-card__link-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+  transition: all 0.3s var(--ease);
+}
+
+.project-card__link-btn svg { width: 15px; height: 15px; }
+.project-card__link-btn:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.06); }
+
+.project-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* title — Playfair Display, same as section titles */
+.project-card__body h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* description — Outfit body font, same as all paragraph text */
+.project-card__body p {
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14.5px;
+  font-weight: 300;
+  color: #828282;
+  line-height: 1.7;
+}
+
+.project-card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+}
+
+/* metric — Playfair italic like stat numbers in About/Hero */
+.project-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.project-card__metric-num {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1;
+}
+
+.project-card__metric-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gray-700);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* tech tags — mono, same style as skills marquee items */
+.project-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.project-card__tech span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gray-500);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 4px 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Dots ── */
+.projects__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.projects__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gray-700);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s var(--ease);
+  padding: 0;
+}
+
+.projects__dot.is-active {
+  background: var(--white);
+  width: 24px;
+  border-radius: 3px;
+}
+
+/* Progress bar */
+.projects__progress {
+  height: 1px;
+  background: var(--border-soft);
+  border-radius: 1px;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.projects__progress-fill {
+  height: 100%;
+  background: var(--white);
+  border-radius: 1px;
+  transition: width 0.6s var(--ease);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .projects__slide { width: 88vw; }
+  .projects__track { height: 460px; }
+  .project-card { padding: 24px; min-height: 360px; gap: 18px; }
+  .project-card__body h3 { font-size: 21px; }
+  .project-card__body p { font-size: 13.5px; }
+  .projects__slide[data-pos="1"]  { transform: translateX(85%) scale(0.78); }
+  .projects__slide[data-pos="-1"] { transform: translateX(-85%) scale(0.78); }
+  .projects__head { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .projects__track { height: 500px; }
+  .project-card { padding: 20px; }
+  .project-card__footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .project-card__tech { justify-content: flex-start; }
+  .projects__counter { display: none; }
+}

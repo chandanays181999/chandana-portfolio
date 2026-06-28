@@ -1,0 +1,139 @@
+.contact { overflow: hidden; }
+
+.contact__parallax-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 50% at 50% 100%, rgba(255,255,255,0.025) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact .container { position: relative; z-index: 1; }
+
+/* ── Cards grid ── */
+.contact__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.contact__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px 24px;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.contact__card--link {
+  cursor: pointer;
+}
+
+.contact__card--link:hover {
+  transform: translateY(-6px);
+  background: var(--bg-card-hover);
+  border-color: rgba(255,255,255,0.14);
+}
+
+/* Icon circle */
+.contact__card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-300);
+  flex-shrink: 0;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.contact__card-icon svg { width: 20px; height: 20px; }
+
+.contact__card--link:hover .contact__card-icon {
+  border-color: rgba(255,255,255,0.3);
+  color: var(--white);
+}
+
+/* Label */
+.contact__card-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-700);
+}
+
+/* Value */
+.contact__card-value {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--gray-100);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Arrow icon — top-right corner */
+.contact__card-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 18px;
+  color: var(--gray-700);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.contact__card-arrow svg { width: 100%; height: 100%; }
+
+.contact__card--link:hover .contact__card-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+  color: var(--white);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .contact__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .contact__card {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .contact__card-icon { flex-shrink: 0; }
+
+  .contact__card-label,
+  .contact__card-value {
+    display: block;
+  }
+
+  .contact__card-arrow {
+    top: 50%;
+    transform: translateY(-50%) translate(-4px, 0);
+  }
+
+  .contact__card--link:hover .contact__card-arrow {
+    transform: translateY(-50%) translate(0, 0);
+  }
+}
